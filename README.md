@@ -7,4 +7,4 @@ Initiation
 ----------
 
 	$npm install mtg-irc
-    $npm start
+    $npm start mtg-irc
