@@ -6,5 +6,8 @@ An intermediator bot to parse IRC messages and retrieve relevant DeckBrew Inform
 Initiation
 ----------
 
-	$npm install mtg-irc
-    $npm start mtg-irc
+*Be sure to adjust 'conf.js' according to your IRC server's address and channel configuration.*
+```
+$npm install mtg-irc
+$npm start mtg-irc
+```
