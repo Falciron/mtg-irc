@@ -1,0 +1,12 @@
+{ "name" : "mtg-irc"
+, "version" : "0.0.0"
+, "description" : "An intermediator bot to parse IRC messages and retrieve relevant DeckBrew information"
+, "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/Falciron/mtg-irc.git" }
+, "scripts" :
+  { "start" : "node mtg-irc.js" }
+, "dependencies" :
+  { "irc" : "*"
+  , "querystring" : "*"
+  , "request" : "*" } }
