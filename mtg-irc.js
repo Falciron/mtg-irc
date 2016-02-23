@@ -26,25 +26,12 @@ function titleCase(str){
 	return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
 }
 
-function lowestPrice(cardEditions){
-	var lowPrice = null;
-	for (var ceCount = 0; ceCount < cardEditions.length; ceCount ++){
-		if (cardEditions[ceCount].price){
-			if (lowPrice === null || cardEditions[ceCount].price.low < lowPrice){
-				lowPrice = cardEditions[ceCount].price.low;
-			}
-		}
-	}
-	return lowPrice ? ' ( $' + lowPrice/100 + ' )' : '';
-}
-
 function cardString(card){
 	var name = card.name;
 	var cost = card.cost ? ' ' + card.cost : '';
 	var power = card.power ? ' ' + card.power + '/' + card.toughness : '';
 	var text = card.text ? ' ' + card.text : '';
-	var price = card.editions ? lowestPrice(card.editions) : '';
-	return (name + cost + power + text + price);
+	return (name + cost + power + text);
 }
 
 function getCardInfo(element) {
@@ -53,13 +40,13 @@ function getCardInfo(element) {
 	request('https://api.deckbrew.com/mtg/cards?' + searchTerm, function(err, res, body){
 		if (!err && res.statusCode === 200){
 			var cards = JSON.parse(body);
-			var badCardInfo = 'The card "' + element + '" could not be found.';
-			var cardCounter = 0;
-			var exactMatchFound = false;
-			var bestMatchIndex = 0;
 			if (cards.length === 0){
+				var badCardInfo = 'The card "' + element + '" could not be found.';
 				bot.say(config.channels[0],badCardInfo);
 			} else {
+				var exactMatchFound = false;
+				var bestMatchIndex = 0;
+				var cardCounter = 0;
 				while (!exactMatchFound && cardCounter < cards.length){
 					if (cards[cardCounter].name === element){
 						exactMatchFound = true;
